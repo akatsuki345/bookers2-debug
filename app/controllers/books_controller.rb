@@ -1,5 +1,7 @@
 class BooksController < ApplicationController
 
+before_action :authenticate_user!
+
   def show
     @book = Book.find(params[:id])
   end
@@ -18,7 +20,7 @@ class BooksController < ApplicationController
       redirect_to book_path(@book.id)
     else
       @books = Book.all
-      render 'index'
+      render :index
     end
   end
 
